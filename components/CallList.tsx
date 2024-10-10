@@ -10,46 +10,21 @@ import { useRouter } from 'next/navigation';
 
 const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
   const router = useRouter();
-  const { endedCalls, upcomingCalls, callRecordings, isLoading } =
-    useGetCalls();
+  const { endedCalls, upcomingCalls, callRecordings, isLoading } = useGetCalls();
   const [recordings, setRecordings] = useState<CallRecording[]>([]);
 
   const getCalls = () => {
-    switch (type) {
-      case 'ended':
-        return endedCalls;
-      case 'recordings':
-        return recordings;
-      case 'upcoming':
-        return upcomingCalls;
-      default:
-        return [];
-    }
+    return type === 'ended' ? endedCalls : type === 'recordings' ? recordings : upcomingCalls;
   };
 
   const getNoCallsMessage = () => {
-    switch (type) {
-      case 'ended':
-        return 'No Previous Calls';
-      case 'upcoming':
-        return 'No Upcoming Calls';
-      case 'recordings':
-        return 'No Recordings';
-      default:
-        return '';
-    }
+    return type === 'ended' ? 'No Previous Calls' : type === 'upcoming' ? 'No Upcoming Calls' : 'No Recordings';
   };
 
   useEffect(() => {
     const fetchRecordings = async () => {
-      const callData = await Promise.all(
-        callRecordings?.map((meeting) => meeting.queryRecordings()) ?? [],
-      );
-
-      const recordings = callData
-        .filter((call) => call.recordings.length > 0)
-        .flatMap((call) => call.recordings);
-
+      const callData = await Promise.all(callRecordings?.map(meeting => meeting.queryRecordings()) ?? []);
+      const recordings = callData.filter(call => call.recordings.length > 0).flatMap(call => call.recordings);
       setRecordings(recordings);
     };
 
@@ -73,8 +48,8 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
               type === 'ended'
                 ? '/icons/previous.svg'
                 : type === 'upcoming'
-                  ? '/icons/upcoming.svg'
-                  : '/icons/recordings.svg'
+                ? '/icons/upcoming.svg'
+                : '/icons/recordings.svg'
             }
             title={
               (meeting as Call).state?.custom?.description ||
@@ -95,7 +70,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
             buttonText={type === 'recordings' ? 'Play' : 'Start'}
             handleClick={
               type === 'recordings'
-                ? () => router.push(`${(meeting as CallRecording).url}`)
+                ? () => router.push((meeting as CallRecording).url)
                 : () => router.push(`/meeting/${(meeting as Call).id}`)
             }
           />

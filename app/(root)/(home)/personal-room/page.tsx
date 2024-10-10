@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { useGetCallById } from "@/hooks/useGetCallById";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
 
 const Table = ({
   title,
@@ -73,6 +73,7 @@ const PersonalRoom = () => {
             navigator.clipboard.writeText(meetingLink);
             toast({
               title: "Link Copied",
+              description: "The meeting link has been copied to your clipboard.",
             });
           }}
         >

@@ -55,7 +55,7 @@ const MeetingModal: React.FC<MeetingModalProps> = ({
         )}
         {children}
         <Button
-          type="submit"
+          type="button" // Changed from "submit" to "button"
           className="bg-purple-1 hover:bg-purple-2"
           onClick={handleClick}
         >

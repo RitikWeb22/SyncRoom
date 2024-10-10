@@ -105,7 +105,7 @@ const MeetingTypeList = () => {
           onClose={() => setMeetingState(undefined)}
           title="Create Meeting"
           handleClick={createMeeting}
-          >
+        >
           <div className="flex flex-col gap-2.5">
             <label className="text-base font-normal leading-[22.4px] text-sky-2">
               Add a description

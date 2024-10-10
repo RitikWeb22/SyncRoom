@@ -10,23 +10,23 @@ const Sidebar = () => {
   const pathname = usePathname()
 
   return (
-    <section className='sticky left-0 flex h-screen w-fit flex-col justify-between bg-dark-1 py-28 text-white max-md:hidden lg:w-[260px]'>
+    <aside className='sticky left-0 flex h-screen w-fit flex-col justify-between bg-gradient-to-b from-gray-800 to-gray-900 py-28 text-white max-md:hidden lg:w-[260px]'>
       <div className='flex flex-1 flex-col gap-6'>
         {sidebarLinks.map((link) => {
-          const isActive = pathname === link.route  || pathname.startsWith(`${link.route}/`) ;
+          const isActive = pathname === link.route || pathname.startsWith(`${link.route}/`);
           return (
             <Link
               href={link.route}
               key={link.label}
-              className={cn('flex items-center rounded-lg justify-start gap-4 p-4', { 'bg-blue-1' : isActive})}
+              className={cn('flex items-center rounded-lg justify-start gap-4 p-4 transition-colors duration-200', { 'bg-blue-600 hover:bg-blue-700': isActive, 'hover:bg-blue-500': !isActive })}
             >
               <Image src={link.imgURL} alt={link.label} width={24} height={24} />
-              <p className='text-lg semibold max-lg:hidden'>{link.label}</p>
+              <span className='text-lg font-semibold max-lg:hidden'>{link.label}</span>
             </Link>
           )
         })}
       </div>
-    </section>
+    </aside>
   )
 }
 

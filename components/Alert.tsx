@@ -4,12 +4,12 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 
-interface PermissionCardProps {
+interface AlertProps {
   title: string;
   iconUrl?: string;
 }
 
-const Alert = ({ title, iconUrl }: PermissionCardProps) => {
+const Alert = ({ title, iconUrl }: AlertProps) => {
   return (
     <section className="flex-center h-screen w-full">
       <Card className="w-full max-w-[520px] border-none bg-dark-1 p-6 py-9 text-white">
@@ -25,7 +25,7 @@ const Alert = ({ title, iconUrl }: PermissionCardProps) => {
             </div>
 
             <Button asChild className="bg-blue-1">
-              <Link href="/">Back to Home</Link>
+              <Link href="/">Go to Home</Link>
             </Button>
           </div>
         </CardContent>

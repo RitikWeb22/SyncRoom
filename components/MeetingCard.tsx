@@ -5,7 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { avatarImages } from "@/constants";
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
 
 interface MeetingCardProps {
   title: string;
@@ -28,12 +28,12 @@ const MeetingCard = ({
   link,
   buttonText,
 }: MeetingCardProps) => {
-    const { toast } = useToast();
+  const { toast } = useToast();
 
   return (
     <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-pink-1 px-5 py-8 xl:max-w-[568px]">
       <article className="flex flex-col gap-5">
-        <Image src={icon} alt="upcoming" width={28} height={28} />
+        <Image src={icon} alt="meeting icon" width={28} height={28} />
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl font-bold">{title}</h1>
@@ -41,7 +41,7 @@ const MeetingCard = ({
           </div>
         </div>
       </article>
-      <article className={cn("flex justify-center relative", {})}>
+      <article className={cn("flex justify-center relative")}>
         <div className="relative flex w-full max-sm:hidden">
           {avatarImages.map((img, index) => (
             <Image
@@ -62,7 +62,7 @@ const MeetingCard = ({
           <div className="flex gap-2">
             <Button onClick={handleClick} className="rounded bg-blue-1 px-6">
               {buttonIcon1 && (
-                <Image src={buttonIcon1} alt="feature" width={20} height={20} />
+                <Image src={buttonIcon1} alt="button icon" width={20} height={20} />
               )}
               &nbsp; {buttonText}
             </Button>
@@ -77,7 +77,7 @@ const MeetingCard = ({
             >
               <Image
                 src="/icons/copy.svg"
-                alt="feature"
+                alt="copy link icon"
                 width={20}
                 height={20}
               />
